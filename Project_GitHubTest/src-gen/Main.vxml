@@ -120,7 +120,27 @@
 		</block>
     	<block>
 	        <script>resetLanguage()</script>
-    		<goto next="#Exit1" />
+    		<goto next="#Branching1" />
+    	</block>
+	</form>
+
+	<!-- This is the Branching block -->
+	<form id="Branching1">
+		<block>
+			<if cond="AppState.ANI == '1234'">
+				
+				<!-- This is the OutLink -->
+				<goto next="#Disconnect1" />
+			</if>
+			<goto next="#Exit1" />
+		</block>
+	</form>
+
+	<!-- This is the Disconnect block -->
+	<form id="Disconnect1">
+		<block>
+
+			<disconnect />
     	</block>
 	</form>
 
