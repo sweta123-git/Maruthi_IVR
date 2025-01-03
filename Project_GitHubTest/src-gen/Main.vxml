@@ -56,6 +56,7 @@
 		AppState.OCS_RecordURI = initSystemTypeVariable('OCS_RecordURI',getCallflowRecordURI());
 		AppState.OCS_URI = initSystemTypeVariable('OCS_URI',getCallflowOCSURI());
 		AppState.OCS_Record = initSystemTypeVariable('OCS_Record',getCallflowOCSRecord());
+		AppState.LZ_PromptValue = '';
 	</script>
 
 	<!-- Global Scripts -->
@@ -87,7 +88,7 @@
 	<!-- This is the Entry block -->
 	<form id="Entry1">
 		<block name="Entry">
-			<goto next="#Prompt1" />
+			<goto next="#Assign1" />
 		</block>
 	</form>
 
@@ -115,13 +116,22 @@
         
     	<block name="Prompt1P0">
   			<prompt bargein="true"  gvp:langexpr="AppState.APP_LANGUAGE">
-				123
+				<audio expr="getAudioURI(AppState.LZ_PromptValue)"></audio>
     		</prompt>
 		</block>
     	<block>
 	        <script>resetLanguage()</script>
     		<goto next="#Branching1" />
     	</block>
+	</form>
+
+	<!-- This is the Assign block -->
+	<form id="Assign1">
+		<block>
+			
+			<assign name="AppState.LZ_PromptValue" expr="'123.wav'" />	
+			<goto next="#Prompt1" />
+		</block>
 	</form>
 
 	<!-- This is the Branching block -->
